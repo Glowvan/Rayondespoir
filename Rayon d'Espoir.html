@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayon d'Espoir - Un petit geste, une grande lumière</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orange: {
+                            primary: '#FF6B35',
+                            warm: '#F7931E',
+                            light: '#FDB44B',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            background: #FAFAFA;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+        }
+        
+        /* BRUTAL SHADOWS */
+        .brutal-shadow {
+            box-shadow: 8px 8px 0px #000;
+        }
+        
+        .brutal-shadow-sm {
+            box-shadow: 4px 4px 0px #000;
+        }
+        
+        .brutal-shadow-lg {
+            box-shadow: 12px 12px 0px #000;
+        }
+        
+        .brutal-shadow-orange {
+            box-shadow: 8px 8px 0px #FF6B35;
+        }
+        
+        /* BORDERS */
+        .brutal-border {
+            border: 4px solid #000;
+        }
+        
+        .brutal-border-thick {
+            border: 6px solid #000;
+        }
+        
+        /* GRID BACKGROUNDS */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        /* ANIMATIONS */
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-5deg) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0deg) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .animate-in {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+        
+        /* HOVER EFFECTS */
+        .hover-tilt {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-tilt:hover {
+            transform: rotate(-2deg) scale(1.05);
+        }
+        
+        .hover-expand {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .hover-expand:hover {
+            transform: scale(1.05);
+            box-shadow: 12px 12px 0px #000;
+        }
+        
+        /* CUSTOM SHAPES */
+        .shape-blob {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        .shape-cut-corner {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
+        }
+        
+        /* TEXT EFFECTS */
+        .text-stroke {
+            -webkit-text-stroke: 2px #000;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .text-glitch {
+            position: relative;
+        }
+        
+        /* ROTATING BADGE */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .rotate-slow {
+            animation: rotate 20s linear infinite;
+        }
+        
+        /* STATS COUNTER */
+        .stat-number {
+            font-size: 5rem;
+            line-height: 1;
+            font-weight: 900;
+        }
+        
+        /* SCROLL INDICATOR */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        /* STICKY NAV */
+        nav {
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* CARDS */
+        .action-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,107,53,0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .action-card:hover::before {
+            left: 100%;
+        }
+        
+        /* SECTION REVEALS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* IMPACT NUMBER COUNTER */
+        .impact-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        
+        /* MOBILE MENU */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full top-0 z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-14 h-14 bg-white brutal-border brutal-shadow-sm flex items-center justify-center overflow-hidden">
+                    <img src="logo.png" alt="Logo Rayon d'Espoir" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <h1 class="text-xl font-black">RAYON D'ESPOIR</h1>
+                    <p class="text-xs tracking-wider uppercase">Un petit geste, une grande lumière</p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#mission" class="font-bold hover:text-orange-primary transition">MISSION</a>
+                <a href="#actions" class="font-bold hover:text-orange-primary transition">ACTIONS</a>
+                <a href="#impact" class="font-bold hover:text-orange-primary transition">IMPACT</a>
+                <a href="#dons" class="font-bold hover:text-orange-primary transition">DONS</a>
+                <a href="#rejoindre" class="bg-orange-primary text-white px-6 py-3 brutal-border brutal-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all font-bold">
+                    REJOINDRE
+                </a>
+            </div>
+            <button class="md:hidden text-2xl" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu fixed top-0 right-0 w-full h-screen bg-white z-40 md:hidden p-8">
+        <button onclick="toggleMenu()" class="absolute top-8 right-8 text-3xl">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="flex flex-col gap-8 mt-20">
+            <a href="#mission" onclick="toggleMenu()" class="text-3xl font-black hover:text-orange-primary">MISSION</a>
+            <a href="#actions" onclick="toggleMenu()" class="text-3xl font-black hover:text-orange-primary">ACTIONS</a>
+            <a href="#impact" onclick="toggleMenu()" class="text-3xl font-black hover:text-orange-primary">IMPACT</a>
+            <a href="#dons" onclick="toggleMenu()" class="text-3xl font-black hover:text-orange-primary">DONS</a>
+            <a href="#rejoindre" onclick="toggleMenu()" class="text-3xl font-black hover:text-orange-primary">REJOINDRE</a>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center pt-24 pb-12 px-6 relative overflow-hidden grid-bg">
+        <div class="absolute top-20 right-10 w-64 h-64 bg-orange-light rounded-full opacity-20 blur-3xl"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-orange-warm rounded-full opacity-20 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8">
+                <div class="inline-block bg-orange-primary text-white px-4 py-2 brutal-border rotate-[-2deg]">
+                    <span class="font-bold text-sm tracking-wider">9,8M DE PERSONNES EN PRÉCARITÉ</span>
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black leading-none">
+                    ENSEMBLE<br/>
+                    <span class="text-stroke">CONTRE</span><br/>
+                    LA PRÉCARITÉ
+                </h1>
+                
+                <p class="text-xl md:text-2xl leading-relaxed max-w-xl">
+                    En 2023, <strong>9,8 millions</strong> de personnes vivent sous le seuil de pauvreté en France.
+                    Nous agissons pour restaurer <strong>dignité</strong>, <strong>lien social</strong> et <strong>accès aux droits</strong>.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#actions" class="bg-black text-white px-8 py-4 brutal-border brutal-shadow-orange hover-expand font-bold text-lg inline-flex items-center gap-2">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        NOS ACTIONS
+                    </a>
+                    <a href="#rejoindre" class="bg-white text-black px-8 py-4 brutal-border brutal-shadow hover-expand font-bold text-lg inline-flex items-center gap-2">
+                        <i class="fas fa-users"></i>
+                        S'ENGAGER
+                    </a>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <div class="brutal-border brutal-shadow-lg overflow-hidden rotate-[2deg] hover-tilt">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80" alt="Solidarité" class="w-full h-[600px] object-cover">
+                </div>
+                <div class="absolute -bottom-8 -left-8 bg-orange-primary text-white p-6 brutal-border brutal-shadow-lg rotate-[-3deg]">
+                    <div class="text-5xl font-black">163M</div>
+                    <div class="font-bold text-sm">REPAS PAR LES RESTOS DU CŒUR</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SCROLL INDICATOR -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center bounce">
+            <i class="fas fa-chevron-down text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- STATS BRUTAL -->
+    <section class="py-20 px-6 bg-black text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center reveal">
+                    <div class="stat-number text-orange-primary">9,8M</div>
+                    <div class="font-bold text-lg mt-2">PERSONNES SOUS LE SEUIL</div>
+                    <div class="text-sm opacity-70 mt-1">de pauvreté en France</div>
+                </div>
+                <div class="text-center reveal">
+                    <div class="stat-number text-orange-warm">1 288€</div>
+                    <div class="font-bold text-lg mt-2">SEUIL MENSUEL</div>
+                    <div class="text-sm opacity-70 mt-1">de pauvreté par personne</div>
+                </div>
+                <div class="text-center reveal">
+                    <div class="stat-number text-orange-light">+30%</div>
+                    <div class="font-bold text-lg mt-2">HAUSSE</div>
+                    <div class="text-sm opacity-70 mt-1">depuis 1996</div>
+                </div>
+                <div class="text-center reveal">
+                    <div class="stat-number text-orange-primary">163M</div>
+                    <div class="font-bold text-lg mt-2">REPAS PAR LES RESTOS DU CŒUR</div>
+                    <div class="text-sm opacity-70 mt-1">distribués en 2024 en France</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION SECTION -->
+    <section id="mission" class="py-32 px-6 bg-white grid-bg relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <div class="inline-block bg-orange-primary text-white px-6 py-3 brutal-border brutal-shadow-sm rotate-[-1deg] mb-6">
+                    <span class="font-bold text-sm tracking-widest">NOTRE MISSION</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-black mb-6">
+                    REDONNER<br/>
+                    <span class="text-orange-primary">DIGNITÉ & ESPOIR</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Mission Card 1 -->
+                <div class="bg-white brutal-border brutal-shadow hover-expand p-8 reveal">
+                    <div class="w-16 h-16 bg-orange-primary flex items-center justify-center mb-6 brutal-border">
+                        <i class="fas fa-utensils text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4">LUTTER CONTRE LA PAUVRETÉ</h3>
+                    <p class="text-lg leading-relaxed">
+                        Épiceries solidaires, distribution de repas chauds, lutte contre le gaspillage pour garantir l'accès à une alimentation digne.
+                    </p>
+                </div>
+                
+                <!-- Mission Card 2 -->
+                <div class="bg-white brutal-border brutal-shadow hover-expand p-8 reveal" style="animation-delay: 0.1s">
+                    <div class="w-16 h-16 bg-orange-warm flex items-center justify-center mb-6 brutal-border">
+                        <i class="fas fa-people-group text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4">ROMPRE L'ISOLEMENT</h3>
+                    <p class="text-lg leading-relaxed">
+                        Ateliers créatifs, sorties culturelles et cafés-rencontres pour restaurer le lien humain et le sentiment d'appartenance.
+                    </p>
+                </div>
+                
+                <!-- Mission Card 3 -->
+                <div class="bg-white brutal-border brutal-shadow hover-expand p-8 reveal" style="animation-delay: 0.2s">
+                    <div class="w-16 h-16 bg-orange-light flex items-center justify-center mb-6 brutal-border">
+                        <i class="fas fa-shield-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black mb-4">FACILITER L'ACCÈS AUX DROITS</h3>
+                    <p class="text-lg leading-relaxed">
+                        Accompagnement pour RSA, domiciliation, accès aux soins. Chacun doit pouvoir exercer ses droits fondamentaux.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACTIONS ASYMMETRIC -->
+    <section id="actions" class="py-32 px-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20">
+                <h2 class="text-5xl md:text-7xl font-black mb-4">
+                    ACTIONS<br/>
+                    <span class="text-orange-primary">CONCRÈTES</span>
+                </h2>
+                <p class="text-2xl max-w-2xl">Sur le terrain, chaque jour, pour changer des vies.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Action 1 -->
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?w=800&q=80" alt="Collectes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="inline-block bg-orange-primary text-white px-3 py-1 text-sm font-bold mb-4">
+                            <i class="fas fa-shopping-basket mr-2"></i>ALIMENTATION
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">COLLECTES ALIMENTAIRES</h3>
+                        <p class="text-lg leading-relaxed">
+                            Organisation de collectes régulières et distribution de repas chauds pour garantir l'accès à une alimentation sûre et diversifiée.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action 2 -->
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80" alt="Accompagnement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="inline-block bg-orange-warm text-white px-3 py-1 text-sm font-bold mb-4">
+                            <i class="fas fa-hands-helping mr-2"></i>ACCOMPAGNEMENT
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">PERMANENCES D'AIDE</h3>
+                        <p class="text-lg leading-relaxed">
+                            Aide personnalisée aux démarches : RSA, domiciliation, santé. Nos bénévoles formés accompagnent chaque personne.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action 3 -->
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80" alt="Ateliers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="inline-block bg-orange-light text-white px-3 py-1 text-sm font-bold mb-4">
+                            <i class="fas fa-palette mr-2"></i>LIEN SOCIAL
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">ATELIERS & RENCONTRES</h3>
+                        <p class="text-lg leading-relaxed">
+                            Ateliers créatifs, sorties culturelles et cafés-rencontres hebdomadaires pour créer du lien et rompre l'isolement.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action 4 -->
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80" alt="Maraudes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="inline-block bg-orange-primary text-white px-3 py-1 text-sm font-bold mb-4">
+                            <i class="fas fa-van-shuttle mr-2"></i>TERRAIN
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">MARAUDES DE RUE</h3>
+                        <p class="text-lg leading-relaxed">
+                            Présence régulière auprès des sans-abri : repas chauds, kits d'hygiène, orientation vers structures d'hébergement.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action 5 -->
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Mentorat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="inline-block bg-orange-warm text-white px-3 py-1 text-sm font-bold mb-4">
+                            <i class="fas fa-briefcase mr-2"></i>EMPLOI
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">MENTORAT PROFESSIONNEL</h3>
+                        <p class="text-lg leading-relaxed">
+                            Coaching personnalisé, ateliers CV, simulations d'entretiens et mise en relation avec entreprises partenaires.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action 6 -->
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80" alt="Familles" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <div class="inline-block bg-orange-light text-white px-3 py-1 text-sm font-bold mb-4">
+                            <i class="fas fa-children mr-2"></i>FAMILLES
+                        </div>
+                        <h3 class="text-3xl font-black mb-4">SOUTIEN AUX FAMILLES</h3>
+                        <p class="text-lg leading-relaxed">
+                            Aide aux familles monoparentales : garde d'enfants, soutien scolaire, accès aux loisirs pour briser le cycle de précarité.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PUBLIC SECTION -->
+    <section class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-7xl font-black mb-4">
+                    POUR <span class="text-orange-primary">TOUS</span>
+                </h2>
+                <p class="text-2xl">Notre aide est universelle et sans jugement</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-orange-primary/10 p-8 brutal-border hover-expand text-center">
+                    <i class="fas fa-user-plus text-6xl text-orange-primary mb-4"></i>
+                    <h3 class="text-xl font-black mb-2">ADULTES & SENIORS</h3>
+                    <p>Personnes en situation d'isolement ou de précarité</p>
+                </div>
+                <div class="bg-orange-warm/10 p-8 brutal-border hover-expand text-center">
+                    <i class="fas fa-graduation-cap text-6xl text-orange-warm mb-4"></i>
+                    <h3 class="text-xl font-black mb-2">JEUNES & ÉTUDIANTS</h3>
+                    <p>Jeunes adultes en difficulté financière</p>
+                </div>
+                <div class="bg-orange-light/10 p-8 brutal-border hover-expand text-center">
+                    <i class="fas fa-person-shelter text-6xl text-orange-light mb-4"></i>
+                    <h3 class="text-xl font-black mb-2">PERSONNES SDF</h3>
+                    <p>Sans-abri et personnes en grande exclusion</p>
+                </div>
+                <div class="bg-orange-primary/10 p-8 brutal-border hover-expand text-center">
+                    <i class="fas fa-people-roof text-6xl text-orange-primary mb-4"></i>
+                    <h3 class="text-xl font-black mb-2">FAMILLES</h3>
+                    <p>Familles monoparentales et foyers précaires</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section id="impact" class="py-32 px-6 bg-black text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-primary rounded-full opacity-10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-orange-warm rounded-full opacity-10 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-black mb-8">
+                        NOTRE<br/>
+                        <span class="text-orange-primary">IMPACT</span>
+                    </h2>
+                    <p class="text-2xl mb-12">Chaque geste compte, chaque action transforme des vies</p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="w-16 h-16 bg-orange-primary flex items-center justify-center brutal-border flex-shrink-0">
+                                <i class="fas fa-check text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black mb-2">RESPECT DE LA DIGNITÉ</h3>
+                                <p class="text-lg opacity-90">
+                                    Accès digne à l'alimentation et aux services essentiels, sans condition ni discrimination.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-16 h-16 bg-orange-warm flex items-center justify-center brutal-border flex-shrink-0">
+                                <i class="fas fa-handshake text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black mb-2">ACCOMPAGNEMENT PERSONNALISÉ</h3>
+                                <p class="text-lg opacity-90">
+                                    Suivi adapté à chaque situation avec des professionnels et bénévoles formés.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-16 h-16 bg-orange-light flex items-center justify-center brutal-border flex-shrink-0">
+                                <i class="fas fa-seedling text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black mb-2">IMPACT DURABLE</h3>
+                                <p class="text-lg opacity-90">
+                                    Au-delà de l'aide immédiate, un changement systémique et durable.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="brutal-border brutal-shadow-orange overflow-hidden rotate-[-2deg]">
+                        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80" alt="Personnes solidaires et entraide communautaire" class="w-full h-[600px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEGAL CONTEXT -->
+    <section class="py-20 px-6 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">CADRE LÉGAL</h2>
+                <p class="text-xl">Notre action s'inscrit dans le respect des droits fondamentaux</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 brutal-border hover-expand">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-scale-balanced text-4xl text-orange-primary"></i>
+                        <div>
+                            <h3 class="text-xl font-black mb-2">DROIT À LA DOMICILIATION</h3>
+                            <p class="text-sm">Article L214-3 : L'absence d'adresse ne peut être opposée pour refuser l'exercice d'un droit.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 brutal-border hover-expand">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-wheat-awn text-4xl text-orange-warm"></i>
+                        <div>
+                            <h3 class="text-xl font-black mb-2">LUTTE CONTRE LA PRÉCARITÉ ALIMENTAIRE</h3>
+                            <p class="text-sm">Favoriser l'accès à une alimentation sûre et diversifiée dans le respect de la dignité.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 brutal-border hover-expand">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-hand-holding-dollar text-4xl text-orange-light"></i>
+                        <div>
+                            <h3 class="text-xl font-black mb-2">REVENU DE SOLIDARITÉ ACTIVE</h3>
+                            <p class="text-sm">Accompagnement dans l'accès au RSA, droit fondamental pour un minimum de ressources.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 brutal-border hover-expand">
+                    <div class="flex items-start gap-4">
+                        <i class="fas fa-user-shield text-4xl text-orange-primary"></i>
+                        <div>
+                            <h3 class="text-xl font-black mb-2">NON-DISCRIMINATION</h3>
+                            <p class="text-sm">Respect absolu du principe de dignité et lutte contre toutes discriminations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONATION SECTION -->
+    <section id="dons" class="py-32 px-6 bg-gradient-to-br from-orange-primary to-orange-warm text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-20 right-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-block bg-white text-orange-primary px-6 py-3 brutal-border brutal-shadow-sm rotate-[-1deg] mb-6">
+                    <span class="font-bold text-sm tracking-widest">SOUTENEZ NOS ACTIONS</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-black mb-6">
+                    FAITES UN <span class="text-black">DON</span>
+                </h2>
+                <p class="text-2xl mb-4 max-w-3xl mx-auto">
+                    Chaque euro compte pour lutter contre la précarité. Votre générosité transforme des vies.
+                </p>
+            </div>
+
+            <!-- COMPTEUR DE DONS -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white/10 backdrop-blur-sm brutal-border brutal-shadow-lg p-8 text-center reveal">
+                    <div class="donation-counter text-6xl md:text-7xl font-black mb-4" data-target="587430">0€</div>
+                    <div class="text-xl font-bold uppercase tracking-wider">Dons collectés en 2024</div>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm brutal-border brutal-shadow-lg p-8 text-center reveal" style="animation-delay: 0.1s">
+                    <div class="donation-counter text-6xl md:text-7xl font-black mb-4" data-target="128945">0</div>
+                    <div class="text-xl font-bold uppercase tracking-wider">Repas distribués</div>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm brutal-border brutal-shadow-lg p-8 text-center reveal" style="animation-delay: 0.2s">
+                    <div class="donation-counter text-6xl md:text-7xl font-black mb-4" data-target="4283">0</div>
+                    <div class="text-xl font-bold uppercase tracking-wider">Personnes aidées</div>
+                </div>
+            </div>
+
+            <!-- UTILISATION DES DONS -->
+            <div class="bg-white text-black brutal-border-thick brutal-shadow-lg p-8 md:p-12 mb-12">
+                <h3 class="text-3xl md:text-4xl font-black mb-8 text-center">COMMENT VOS DONS SONT UTILISÉS</h3>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-orange-primary mb-2">50%</div>
+                        <div class="font-bold text-lg mb-2">AIDE ALIMENTAIRE</div>
+                        <p class="text-sm">Collectes, épiceries solidaires, repas chauds</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-orange-warm mb-2">25%</div>
+                        <div class="font-bold text-lg mb-2">ACCOMPAGNEMENT</div>
+                        <p class="text-sm">Permanences, aide administrative, santé</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-orange-light mb-2">20%</div>
+                        <div class="font-bold text-lg mb-2">LIEN SOCIAL</div>
+                        <p class="text-sm">Ateliers, sorties, événements collectifs</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-5xl font-black text-orange-primary mb-2">5%</div>
+                        <div class="font-bold text-lg mb-2">FONCTIONNEMENT</div>
+                        <p class="text-sm">Locaux, matériel, communication</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA DONS -->
+            <div class="text-center">
+                <div class="bg-black text-white p-8 md:p-12 brutal-border-thick brutal-shadow-lg inline-block max-w-2xl">
+                    <h3 class="text-3xl font-black mb-6">CHOISISSEZ VOTRE IMPACT</h3>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-orange-primary p-4 brutal-border text-center hover-expand cursor-pointer">
+                            <div class="text-3xl font-black">20€</div>
+                            <div class="text-xs mt-1">10 repas</div>
+                        </div>
+                        <div class="bg-orange-warm p-4 brutal-border text-center hover-expand cursor-pointer">
+                            <div class="text-3xl font-black">50€</div>
+                            <div class="text-xs mt-1">25 repas</div>
+                        </div>
+                        <div class="bg-orange-light p-4 brutal-border text-center hover-expand cursor-pointer">
+                            <div class="text-3xl font-black">100€</div>
+                            <div class="text-xs mt-1">50 repas</div>
+                        </div>
+                        <div class="bg-orange-primary p-4 brutal-border text-center hover-expand cursor-pointer">
+                            <div class="text-3xl font-black">AUTRE</div>
+                            <div class="text-xs mt-1">Montant libre</div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="document.getElementById('contactForm').submit();" class="bg-white text-black px-12 py-5 brutal-border brutal-shadow-orange hover-expand font-black text-xl inline-flex items-center gap-3">
+                        <i class="fas fa-heart"></i>
+                        FAIRE UN DON
+                    </button>
+
+                    <div class="mt-6 text-sm opacity-70">
+                        <i class="fas fa-lock mr-2"></i>Paiement 100% sécurisé • Reçu fiscal automatique
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="rejoindre" class="py-32 px-6 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg opacity-50"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl md:text-7xl font-black mb-4">
+                    AGISSEZ AVEC <span class="text-orange-primary">NOUS</span>
+                </h2>
+                <p class="text-2xl">Devenez bénévole, partenaire ou donateur régulier · Ensemble, changeons des vies</p>
+            </div>
+
+            <div class="bg-white brutal-border-thick brutal-shadow-lg p-8 md:p-12">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-bold mb-2 text-sm uppercase tracking-wider">Nom complet</label>
+                            <input type="text" class="w-full px-4 py-3 brutal-border focus:outline-none focus:ring-4 focus:ring-orange-primary/30" placeholder="Jean Dupont">
+                        </div>
+                        <div>
+                            <label class="block font-bold mb-2 text-sm uppercase tracking-wider">Email</label>
+                            <input type="email" class="w-full px-4 py-3 brutal-border focus:outline-none focus:ring-4 focus:ring-orange-primary/30" placeholder="jean@email.com">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold mb-2 text-sm uppercase tracking-wider">Téléphone</label>
+                        <input type="tel" class="w-full px-4 py-3 brutal-border focus:outline-none focus:ring-4 focus:ring-orange-primary/30" placeholder="06 12 34 56 78">
+                    </div>
+
+                    <div>
+                        <label class="block font-bold mb-2 text-sm uppercase tracking-wider">Je souhaite</label>
+                        <select class="w-full px-4 py-3 brutal-border focus:outline-none focus:ring-4 focus:ring-orange-primary/30">
+                            <option>Devenir bénévole</option>
+                            <option>Faire un don récurrent (mensuel)</option>
+                            <option>Proposer un partenariat</option>
+                            <option>Recevoir de l'aide</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-orange-primary text-white px-8 py-5 brutal-border brutal-shadow-lg hover-expand font-black text-xl">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        ENVOYER MA DEMANDE
+                    </button>
+                </form>
+                
+                <div class="mt-8 flex flex-wrap gap-4 justify-center">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-circle-check text-orange-primary text-xl"></i>
+                        <span class="font-bold">Bénévolat flexible</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-circle-check text-orange-primary text-xl"></i>
+                        <span class="font-bold">Formation fournie</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-circle-check text-orange-primary text-xl"></i>
+                        <span class="font-bold">Impact concret</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOURCES & REFERENCES -->
+    <section class="py-20 px-6 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-black mb-4">SOURCES & RÉFÉRENCES</h2>
+                <p class="text-xl opacity-80">Notre engagement s'appuie sur des données officielles et un cadre légal solide</p>
+            </div>
+
+            <!-- STATISTIQUES OFFICIELLES -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-black mb-6 text-orange-primary flex items-center gap-3">
+                    <i class="fas fa-chart-line"></i>
+                    STATISTIQUES OFFICIELLES
+                </h3>
+                <div class="space-y-4">
+                    <div class="bg-white/5 p-6 brutal-border border-white/20 hover-expand">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-file-lines text-2xl text-orange-primary mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">9 792 000 personnes en situation de pauvreté (2023)</h4>
+                                <p class="opacity-80 mb-2">Seuil de pauvreté : moins de 1 288 euros par mois par unité de consommation.</p>
+                                <a href="https://www.insee.fr/fr/outil-interactif/5367857/tableau/30_RPC/33_PAU" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-sm font-bold inline-flex items-center gap-2">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Source : Insee - Tableau de bord de l'économie française
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/5 p-6 brutal-border border-white/20 hover-expand">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-file-lines text-2xl text-orange-warm mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Taux de pauvreté en 2023 : un niveau inédit depuis 1996</h4>
+                                <p class="opacity-80 mb-2">Jamais la pauvreté n'avait atteint les sommets enregistrés en 2023.</p>
+                                <a href="https://www.vie-publique.fr/en-bref/299413-taux-de-pauvrete-en-2023-en-france-un-niveau-inedit-depuis-1996" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-sm font-bold inline-flex items-center gap-2">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Source : vie-publique.fr
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/5 p-6 brutal-border border-white/20 hover-expand">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-file-lines text-2xl text-orange-light mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">Une pauvreté qui ne diminue pas malgré la baisse du chômage</h4>
+                                <p class="opacity-80 mb-2">La pauvreté persiste malgré l'amélioration des indicateurs économiques.</p>
+                                <a href="https://www.vie-publique.fr/en-bref/298835-une-pauvrete-qui-ne-diminue-pas-malgre-la-baisse-du-chomage" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-sm font-bold inline-flex items-center gap-2">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Source : vie-publique.fr
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/5 p-6 brutal-border border-white/20 hover-expand">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-file-lines text-2xl text-orange-primary mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-lg mb-2">La pauvreté et les inégalités au plus haut depuis trente ans</h4>
+                                <p class="opacity-80 mb-2">« Jamais celles-ci n'avaient atteint les sommets enregistrés pour l'année 2023 » - Le Monde</p>
+                                <a href="https://www.lemonde.fr/societe/article/2025/07/07/la-pauvrete-et-les-inegalites-au-plus-haut-depuis-trente-ans_6619650_3224.html" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-sm font-bold inline-flex items-center gap-2">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Source : Le Monde
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CADRE LEGAL -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-black mb-6 text-orange-warm flex items-center gap-3">
+                    <i class="fas fa-balance-scale"></i>
+                    CADRE LÉGAL
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Titre VI : Lutte contre la pauvreté et les exclusions</h4>
+                        <p class="text-sm opacity-80 mb-2">Articles L261-1 à L266-2</p>
+                        <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006142841/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            Légifrance
+                        </a>
+                    </div>
+
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Chapitre IV : Domiciliation</h4>
+                        <p class="text-sm opacity-80 mb-2">Articles L264-1 à L264-10</p>
+                        <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006157615/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            Légifrance
+                        </a>
+                    </div>
+
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Chapitre VI : Lutte contre la précarité alimentaire</h4>
+                        <p class="text-sm opacity-80 mb-2">Articles L266-1 à L266-2 - « Favoriser l'accès à une alimentation sûre, diversifiée, de bonne qualité dans le respect du principe de dignité »</p>
+                        <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000037550330/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            Légifrance
+                        </a>
+                    </div>
+
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Chapitre II : Revenu de solidarité active</h4>
+                        <p class="text-sm opacity-80 mb-2">Articles R262-1 à R262-121 - Accompagnement dans l'accès au RSA</p>
+                        <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006160902/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            Légifrance
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASSOCIATIONS & MOBILISATION -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-black mb-6 text-orange-light flex items-center gap-3">
+                    <i class="fas fa-handshake"></i>
+                    ASSOCIATIONS & MOBILISATION
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Restos du Cœur</h4>
+                        <p class="text-sm opacity-80 mb-2">163 millions de repas distribués et 1,3 million de personnes accueillies</p>
+                        <a href="https://www.restosducoeur.org" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            restosducoeur.org
+                        </a>
+                    </div>
+
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Défenseur des Droits</h4>
+                        <p class="text-sm opacity-80 mb-2">Accès aux droits des personnes en situation de précarité</p>
+                        <a href="https://www.defenseurdesdroits.fr" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            defenseurdesdroits.fr
+                        </a>
+                    </div>
+
+                    <div class="bg-white/5 p-5 brutal-border border-white/20 hover-expand">
+                        <h4 class="font-bold mb-2 text-orange-primary">Le Mouvement associatif</h4>
+                        <p class="text-sm opacity-80 mb-2">Mobilisation du 11 octobre contre la baisse de financement et la précarité croissante</p>
+                        <a href="https://lemouvementassociatif.org" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
+                            <i class="fas fa-external-link-alt"></i>
+                            lemouvementassociatif.org
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISCLAIMER -->
+            <div class="text-center pt-8 border-t border-white/20">
+                <p class="text-sm opacity-70">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Rayon d'Espoir est une association fictive créée à des fins pédagogiques.
+                    Les données et statistiques citées proviennent de sources officielles françaises (Insee, Légifrance, vie-publique.fr).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-white brutal-border flex items-center justify-center overflow-hidden">
+                            <img src="logo.png" alt="Logo Rayon d'Espoir" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-black">RAYON D'ESPOIR</h3>
+                    </div>
+                    <p class="opacity-70">Un petit geste, une grande lumière</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-black mb-4 text-lg">NAVIGATION</h4>
+                    <ul class="space-y-2 opacity-70">
+                        <li><a href="#mission" class="hover:text-orange-primary transition">Mission</a></li>
+                        <li><a href="#actions" class="hover:text-orange-primary transition">Actions</a></li>
+                        <li><a href="#impact" class="hover:text-orange-primary transition">Impact</a></li>
+                        <li><a href="#dons" class="hover:text-orange-primary transition">Dons</a></li>
+                        <li><a href="#rejoindre" class="hover:text-orange-primary transition">Rejoindre</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-black mb-4 text-lg">CONTACT</h4>
+                    <ul class="space-y-2 opacity-70">
+                        <li><i class="fas fa-envelope text-orange-primary mr-2"></i>contact@rayondespoir.fr</li>
+                        <li><i class="fas fa-phone text-orange-primary mr-2"></i>01 45 89 32 76</li>
+                        <li><i class="fas fa-map-marker-alt text-orange-primary mr-2"></i>Paris, France</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-black mb-4 text-lg">SUIVEZ-NOUS</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 bg-orange-primary brutal-border hover:bg-orange-warm transition flex items-center justify-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-orange-primary brutal-border hover:bg-orange-warm transition flex items-center justify-center">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-orange-primary brutal-border hover:bg-orange-warm transition flex items-center justify-center">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center opacity-70">
+                <p>&copy; 2025 Rayon d'Espoir. Association loi 1901. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.querySelector('.mobile-menu').classList.toggle('active');
+        }
+        
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        
+        // Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+        
+        // Nav Background on Scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+        
+        // Number Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const target = counter.textContent;
+            counter.textContent = '0';
+            
+            const updateCounter = () => {
+                const current = +counter.textContent.replace(/[^0-9]/g, '');
+                const targetNum = +target.replace(/[^0-9]/g, '');
+                const increment = targetNum / 50;
+                
+                if (current < targetNum) {
+                    counter.textContent = target.replace(/[0-9]+/, Math.ceil(current + increment));
+                    setTimeout(updateCounter, 30);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counterObserver.observe(counter);
+        });
+
+        // Donation Counter Animation
+        const donationCounters = document.querySelectorAll('.donation-counter');
+        donationCounters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const hasCurrency = counter.textContent.includes('€');
+            counter.textContent = hasCurrency ? '0€' : '0';
+
+            const updateDonationCounter = () => {
+                const current = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+                const increment = Math.ceil(target / 80);
+
+                if (current < target) {
+                    const newValue = Math.min(current + increment, target);
+                    counter.textContent = hasCurrency ? newValue.toLocaleString('fr-FR') + '€' : newValue.toLocaleString('fr-FR');
+                    setTimeout(updateDonationCounter, 25);
+                } else {
+                    counter.textContent = hasCurrency ? target.toLocaleString('fr-FR') + '€' : target.toLocaleString('fr-FR');
+                }
+            };
+
+            const donationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateDonationCounter();
+                        donationObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            donationObserver.observe(counter);
+        });
+    </script>
+</body>
+</html>
