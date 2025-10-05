@@ -1,0 +1,29 @@
+User-agent: *
+Disallow: /
+
+# Google
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+# Bing
+User-agent: Bingbot
+Disallow: /
+
+# Yahoo
+User-agent: Slurp
+Disallow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Disallow: /
+
+# Baidu
+User-agent: Baiduspider
+Disallow: /
+
+# Yandex
+User-agent: YandexBot
+Disallow: /
