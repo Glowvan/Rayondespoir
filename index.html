@@ -245,16 +245,144 @@
             left: 100%;
         }
         
-        /* SECTION REVEALS */
+        /* SECTION REVEALS - SCROLL ANIMATIONS */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
+
         .reveal.active {
             opacity: 1;
+        }
+
+        /* Fade Up - Default */
+        .reveal.fade-up {
+            transform: translateY(60px);
+        }
+
+        .reveal.fade-up.active {
             transform: translateY(0);
+        }
+
+        /* Fade Down */
+        .reveal.fade-down {
+            transform: translateY(-60px);
+        }
+
+        .reveal.fade-down.active {
+            transform: translateY(0);
+        }
+
+        /* Fade Left */
+        .reveal.fade-left {
+            transform: translateX(-60px);
+        }
+
+        .reveal.fade-left.active {
+            transform: translateX(0);
+        }
+
+        /* Fade Right */
+        .reveal.fade-right {
+            transform: translateX(60px);
+        }
+
+        .reveal.fade-right.active {
+            transform: translateX(0);
+        }
+
+        /* Zoom In */
+        .reveal.zoom-in {
+            transform: scale(0.85);
+        }
+
+        .reveal.zoom-in.active {
+            transform: scale(1);
+        }
+
+        /* Rotate In */
+        .reveal.rotate-in {
+            transform: rotate(-8deg) scale(0.9);
+        }
+
+        .reveal.rotate-in.active {
+            transform: rotate(0deg) scale(1);
+        }
+
+        /* Slide Scale - Perfect for CTA */
+        .reveal.slide-scale {
+            transform: translateY(40px) scale(0.95);
+        }
+
+        .reveal.slide-scale.active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Stagger Delays for Grid Items */
+        .reveal[data-delay="1"] {
+            transition-delay: 0.1s;
+        }
+
+        .reveal[data-delay="2"] {
+            transition-delay: 0.2s;
+        }
+
+        .reveal[data-delay="3"] {
+            transition-delay: 0.3s;
+        }
+
+        .reveal[data-delay="4"] {
+            transition-delay: 0.4s;
+        }
+
+        .reveal[data-delay="5"] {
+            transition-delay: 0.5s;
+        }
+
+        .reveal[data-delay="6"] {
+            transition-delay: 0.6s;
+        }
+
+        /* Mobile - More Subtle Animations */
+        @media (max-width: 768px) {
+            .reveal.fade-up,
+            .reveal.fade-down {
+                transform: translateY(30px);
+            }
+
+            .reveal.fade-left,
+            .reveal.fade-right {
+                transform: translateX(30px);
+            }
+
+            .reveal.zoom-in {
+                transform: scale(0.92);
+            }
+
+            .reveal.rotate-in {
+                transform: rotate(-4deg) scale(0.95);
+            }
+
+            .reveal.slide-scale {
+                transform: translateY(20px) scale(0.97);
+            }
+
+            .reveal {
+                transition-duration: 0.6s;
+            }
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                transition: opacity 0.3s ease;
+                transform: none !important;
+            }
+
+            .reveal.active {
+                opacity: 1;
+                transform: none !important;
+            }
         }
         
         /* FIX OVERFLOW ISSUES */
@@ -507,22 +635,22 @@
     <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-black text-white">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-                <div class="text-center reveal">
+                <div class="text-center reveal fade-up" data-delay="1">
                     <div class="stat-number text-orange-primary">9,8M</div>
                     <div class="font-bold text-sm sm:text-base md:text-lg mt-2">PERSONNES SOUS LE SEUIL</div>
                     <div class="text-xs sm:text-sm opacity-70 mt-1">de pauvreté en France</div>
                 </div>
-                <div class="text-center reveal">
+                <div class="text-center reveal fade-up" data-delay="2">
                     <div class="stat-number text-orange-warm">1 288€</div>
                     <div class="font-bold text-sm sm:text-base md:text-lg mt-2">SEUIL MENSUEL</div>
                     <div class="text-xs sm:text-sm opacity-70 mt-1">de pauvreté par personne</div>
                 </div>
-                <div class="text-center reveal">
+                <div class="text-center reveal fade-up" data-delay="3">
                     <div class="stat-number text-orange-light">+30%</div>
                     <div class="font-bold text-sm sm:text-base md:text-lg mt-2">HAUSSE</div>
                     <div class="text-xs sm:text-sm opacity-70 mt-1">depuis 1996</div>
                 </div>
-                <div class="text-center reveal">
+                <div class="text-center reveal fade-up" data-delay="4">
                     <div class="stat-number text-orange-primary">163M</div>
                     <div class="font-bold text-sm sm:text-base md:text-lg mt-2">REPAS PAR LES RESTOS DU CŒUR</div>
                     <div class="text-xs sm:text-sm opacity-70 mt-1">distribués en 2024 en France</div>
@@ -534,7 +662,7 @@
     <!-- MISSION SECTION -->
     <section id="mission" class="py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 bg-white grid-bg relative">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 sm:mb-16 md:mb-20">
+            <div class="text-center mb-12 sm:mb-16 md:mb-20 reveal zoom-in">
                 <div class="inline-block bg-orange-primary text-white px-4 sm:px-6 py-2 sm:py-3 brutal-border brutal-shadow-sm rotate-[-1deg] mb-4 sm:mb-6">
                     <span class="font-bold text-xs sm:text-sm tracking-widest">NOTRE MISSION</span>
                 </div>
@@ -546,7 +674,7 @@
 
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Mission Card 1 -->
-                <div class="bg-white brutal-border brutal-shadow hover-expand p-6 sm:p-8 reveal">
+                <div class="bg-white brutal-border brutal-shadow hover-expand p-6 sm:p-8 reveal fade-up" data-delay="1">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-primary flex items-center justify-center mb-4 sm:mb-6 brutal-border">
                         <i class="fas fa-utensils text-white text-xl sm:text-2xl"></i>
                     </div>
@@ -557,7 +685,7 @@
                 </div>
 
                 <!-- Mission Card 2 -->
-                <div class="bg-white brutal-border brutal-shadow hover-expand p-6 sm:p-8 reveal" style="animation-delay: 0.1s">
+                <div class="bg-white brutal-border brutal-shadow hover-expand p-6 sm:p-8 reveal fade-up" data-delay="2">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-warm flex items-center justify-center mb-4 sm:mb-6 brutal-border">
                         <i class="fas fa-people-group text-white text-xl sm:text-2xl"></i>
                     </div>
@@ -568,7 +696,7 @@
                 </div>
 
                 <!-- Mission Card 3 -->
-                <div class="bg-white brutal-border brutal-shadow hover-expand p-6 sm:p-8 reveal sm:col-span-2 md:col-span-1" style="animation-delay: 0.2s">
+                <div class="bg-white brutal-border brutal-shadow hover-expand p-6 sm:p-8 reveal fade-up sm:col-span-2 md:col-span-1" data-delay="3">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-light flex items-center justify-center mb-4 sm:mb-6 brutal-border">
                         <i class="fas fa-shield-heart text-white text-xl sm:text-2xl"></i>
                     </div>
@@ -584,7 +712,7 @@
     <!-- ACTIONS ASYMMETRIC -->
     <section id="actions" class="py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 bg-gray-50">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-12 sm:mb-16 md:mb-20">
+            <div class="mb-12 sm:mb-16 md:mb-20 reveal fade-down">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 sm:mb-4">
                     ACTIONS<br/>
                     <span class="text-orange-primary">CONCRÈTES</span>
@@ -594,7 +722,7 @@
 
             <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Action 1 -->
-                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group reveal fade-left" data-delay="1">
                     <div class="h-48 sm:h-56 md:h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?w=800&q=80" alt="Collectes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -610,7 +738,7 @@
                 </div>
 
                 <!-- Action 2 -->
-                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group reveal fade-right" data-delay="1">
                     <div class="h-48 sm:h-56 md:h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80" alt="Accompagnement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -626,7 +754,7 @@
                 </div>
 
                 <!-- Action 3 -->
-                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group reveal fade-left" data-delay="2">
                     <div class="h-48 sm:h-56 md:h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=800&q=80" alt="Ateliers" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -642,7 +770,7 @@
                 </div>
 
                 <!-- Action 4 -->
-                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group reveal fade-right" data-delay="2">
                     <div class="h-48 sm:h-56 md:h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80" alt="Maraudes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -658,7 +786,7 @@
                 </div>
 
                 <!-- Action 5 -->
-                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group reveal fade-left" data-delay="3">
                     <div class="h-48 sm:h-56 md:h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="Mentorat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -674,7 +802,7 @@
                 </div>
 
                 <!-- Action 6 -->
-                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group">
+                <div class="action-card bg-white brutal-border brutal-shadow-lg hover-expand group reveal fade-right" data-delay="3">
                     <div class="h-48 sm:h-56 md:h-64 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80" alt="Familles" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
@@ -695,7 +823,7 @@
     <!-- PUBLIC SECTION -->
     <section class="py-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6 bg-white">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 sm:mb-16">
+            <div class="text-center mb-12 sm:mb-16 reveal zoom-in">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 sm:mb-4">
                     POUR <span class="text-orange-primary">TOUS</span>
                 </h2>
@@ -703,22 +831,22 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-                <div class="bg-orange-primary/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center">
+                <div class="bg-orange-primary/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center reveal zoom-in" data-delay="1">
                     <i class="fas fa-user-plus text-4xl sm:text-5xl md:text-6xl text-orange-primary mb-3 sm:mb-4"></i>
                     <h3 class="text-base sm:text-lg md:text-xl font-black mb-2">ADULTES & SENIORS</h3>
                     <p class="text-xs sm:text-sm md:text-base">Personnes en situation d'isolement ou de précarité</p>
                 </div>
-                <div class="bg-orange-warm/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center">
+                <div class="bg-orange-warm/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center reveal zoom-in" data-delay="2">
                     <i class="fas fa-graduation-cap text-4xl sm:text-5xl md:text-6xl text-orange-warm mb-3 sm:mb-4"></i>
                     <h3 class="text-base sm:text-lg md:text-xl font-black mb-2">JEUNES & ÉTUDIANTS</h3>
                     <p class="text-xs sm:text-sm md:text-base">Jeunes adultes en difficulté financière</p>
                 </div>
-                <div class="bg-orange-light/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center">
+                <div class="bg-orange-light/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center reveal zoom-in" data-delay="3">
                     <i class="fas fa-person-shelter text-4xl sm:text-5xl md:text-6xl text-orange-light mb-3 sm:mb-4"></i>
                     <h3 class="text-base sm:text-lg md:text-xl font-black mb-2">PERSONNES SDF</h3>
                     <p class="text-xs sm:text-sm md:text-base">Sans-abri et personnes en grande exclusion</p>
                 </div>
-                <div class="bg-orange-primary/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center">
+                <div class="bg-orange-primary/10 p-5 sm:p-6 md:p-8 brutal-border hover-expand text-center reveal zoom-in" data-delay="4">
                     <i class="fas fa-people-roof text-4xl sm:text-5xl md:text-6xl text-orange-primary mb-3 sm:mb-4"></i>
                     <h3 class="text-base sm:text-lg md:text-xl font-black mb-2">FAMILLES</h3>
                     <p class="text-xs sm:text-sm md:text-base">Familles monoparentales et foyers précaires</p>
@@ -734,7 +862,7 @@
 
         <div class="max-w-7xl mx-auto relative z-10">
             <div class="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
-                <div>
+                <div class="reveal fade-right">
                     <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8">
                         NOTRE<br/>
                         <span class="text-orange-primary">IMPACT</span>
@@ -742,7 +870,7 @@
                     <p class="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12">Chaque geste compte, chaque action transforme des vies</p>
 
                     <div class="space-y-6 sm:space-y-8">
-                        <div class="flex gap-3 sm:gap-4">
+                        <div class="flex gap-3 sm:gap-4 reveal fade-up" data-delay="1">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-primary flex items-center justify-center brutal-border flex-shrink-0">
                                 <i class="fas fa-check text-lg sm:text-xl md:text-2xl"></i>
                             </div>
@@ -754,7 +882,7 @@
                             </div>
                         </div>
 
-                        <div class="flex gap-3 sm:gap-4">
+                        <div class="flex gap-3 sm:gap-4 reveal fade-up" data-delay="2">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-warm flex items-center justify-center brutal-border flex-shrink-0">
                                 <i class="fas fa-handshake text-lg sm:text-xl md:text-2xl"></i>
                             </div>
@@ -766,7 +894,7 @@
                             </div>
                         </div>
 
-                        <div class="flex gap-3 sm:gap-4">
+                        <div class="flex gap-3 sm:gap-4 reveal fade-up" data-delay="3">
                             <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-orange-light flex items-center justify-center brutal-border flex-shrink-0">
                                 <i class="fas fa-seedling text-lg sm:text-xl md:text-2xl"></i>
                             </div>
@@ -780,7 +908,7 @@
                     </div>
                 </div>
 
-                <div class="relative mt-8 md:mt-0">
+                <div class="relative mt-8 md:mt-0 reveal zoom-in" data-delay="1">
                     <div class="brutal-border brutal-shadow-orange overflow-hidden rotate-[-2deg]">
                         <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80" alt="Personnes solidaires et entraide communautaire" class="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] object-cover">
                     </div>
@@ -792,13 +920,13 @@
     <!-- LEGAL CONTEXT -->
     <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-100">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-8 sm:mb-10 md:mb-12">
+            <div class="text-center mb-8 sm:mb-10 md:mb-12 reveal fade-down">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">CADRE LÉGAL</h2>
                 <p class="text-base sm:text-lg md:text-xl">Notre action s'inscrit dans le respect des droits fondamentaux</p>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand">
+                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand reveal fade-up" data-delay="1">
                     <div class="flex items-start gap-3 sm:gap-4">
                         <i class="fas fa-scale-balanced text-3xl sm:text-4xl text-orange-primary flex-shrink-0"></i>
                         <div>
@@ -808,7 +936,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand">
+                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand reveal fade-up" data-delay="2">
                     <div class="flex items-start gap-3 sm:gap-4">
                         <i class="fas fa-wheat-awn text-3xl sm:text-4xl text-orange-warm flex-shrink-0"></i>
                         <div>
@@ -818,7 +946,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand">
+                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand reveal fade-up" data-delay="3">
                     <div class="flex items-start gap-3 sm:gap-4">
                         <i class="fas fa-hand-holding-dollar text-3xl sm:text-4xl text-orange-light flex-shrink-0"></i>
                         <div>
@@ -828,7 +956,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand">
+                <div class="bg-white p-4 sm:p-5 md:p-6 brutal-border hover-expand reveal fade-up" data-delay="4">
                     <div class="flex items-start gap-3 sm:gap-4">
                         <i class="fas fa-user-shield text-3xl sm:text-4xl text-orange-primary flex-shrink-0"></i>
                         <div>
@@ -849,7 +977,7 @@
         </div>
 
         <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-10 sm:mb-12 md:mb-16">
+            <div class="text-center mb-10 sm:mb-12 md:mb-16 reveal zoom-in">
                 <div class="inline-block bg-white text-orange-primary px-4 sm:px-6 py-2 sm:py-3 brutal-border brutal-shadow-sm rotate-[-1deg] mb-4 sm:mb-6">
                     <span class="font-bold text-xs sm:text-sm tracking-widest">SOUTENEZ NOS ACTIONS</span>
                 </div>
@@ -862,7 +990,7 @@
             </div>
 
             <!-- UTILISATION DES DONS -->
-            <div class="bg-white text-black brutal-border-thick brutal-shadow-lg p-5 sm:p-6 md:p-8 lg:p-12 mb-8 sm:mb-10 md:mb-12">
+            <div class="bg-white text-black brutal-border-thick brutal-shadow-lg p-5 sm:p-6 md:p-8 lg:p-12 mb-8 sm:mb-10 md:mb-12 reveal fade-up" data-delay="1">
                 <h3 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black mb-6 sm:mb-8 text-center">COMMENT VOS DONS SONT UTILISÉS</h3>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
@@ -894,7 +1022,7 @@
 
             <!-- CTA DONS -->
             <div class="text-center">
-                <div class="bg-black text-white p-5 sm:p-6 md:p-8 lg:p-12 brutal-border-thick brutal-shadow-lg inline-block max-w-2xl w-full">
+                <div class="bg-black text-white p-5 sm:p-6 md:p-8 lg:p-12 brutal-border-thick brutal-shadow-lg inline-block max-w-2xl w-full reveal slide-scale" data-delay="2">
                     <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-5 sm:mb-6">CHOISISSEZ VOTRE IMPACT</h3>
 
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
@@ -934,14 +1062,14 @@
         <div class="absolute inset-0 grid-bg opacity-50"></div>
 
         <div class="max-w-4xl mx-auto relative z-10">
-            <div class="text-center mb-8 sm:mb-10 md:mb-12">
+            <div class="text-center mb-8 sm:mb-10 md:mb-12 reveal fade-down">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-3 sm:mb-4">
                     AGISSEZ AVEC <span class="text-orange-primary">NOUS</span>
                 </h2>
                 <p class="text-base sm:text-lg md:text-xl lg:text-2xl px-4">Devenez bénévole, partenaire ou donateur régulier · Ensemble, changeons des vies</p>
             </div>
 
-            <div class="bg-white brutal-border-thick brutal-shadow-lg p-5 sm:p-6 md:p-8 lg:p-12">
+            <div class="bg-white brutal-border-thick brutal-shadow-lg p-5 sm:p-6 md:p-8 lg:p-12 reveal zoom-in" data-delay="1">
                 <form id="contactForm" class="space-y-5 sm:space-y-6">
                     <div class="grid sm:grid-cols-2 gap-5 sm:gap-6">
                         <div>
@@ -996,19 +1124,19 @@
     <!-- SOURCES & REFERENCES -->
     <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-8 sm:mb-10 md:mb-12">
+            <div class="text-center mb-8 sm:mb-10 md:mb-12 reveal fade-up">
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-black mb-3 sm:mb-4">SOURCES & RÉFÉRENCES</h2>
                 <p class="text-base sm:text-lg md:text-xl opacity-80">Notre engagement s'appuie sur des données officielles et un cadre légal solide</p>
             </div>
 
             <!-- STATISTIQUES OFFICIELLES -->
             <div class="mb-8 sm:mb-10 md:mb-12">
-                <h3 class="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-orange-primary flex items-center gap-2 sm:gap-3">
+                <h3 class="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-orange-primary flex items-center gap-2 sm:gap-3 reveal fade-left" data-delay="1">
                     <i class="fas fa-chart-line text-lg sm:text-xl"></i>
                     STATISTIQUES OFFICIELLES
                 </h3>
                 <div class="space-y-3 sm:space-y-4">
-                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand reveal fade-up" data-delay="1">
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-file-lines text-xl sm:text-2xl text-orange-primary mt-1 flex-shrink-0"></i>
                             <div>
@@ -1022,7 +1150,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand reveal fade-up" data-delay="2">
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-file-lines text-xl sm:text-2xl text-orange-warm mt-1 flex-shrink-0"></i>
                             <div>
@@ -1036,7 +1164,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand reveal fade-up" data-delay="3">
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-file-lines text-xl sm:text-2xl text-orange-light mt-1 flex-shrink-0"></i>
                             <div>
@@ -1050,7 +1178,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 md:p-6 brutal-border border-white/20 hover-expand reveal fade-up" data-delay="4">
                         <div class="flex items-start gap-3 sm:gap-4">
                             <i class="fas fa-file-lines text-xl sm:text-2xl text-orange-primary mt-1 flex-shrink-0"></i>
                             <div>
@@ -1068,12 +1196,12 @@
 
             <!-- CADRE LEGAL -->
             <div class="mb-8 sm:mb-10 md:mb-12">
-                <h3 class="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-orange-warm flex items-center gap-2 sm:gap-3">
+                <h3 class="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-orange-warm flex items-center gap-2 sm:gap-3 reveal fade-left" data-delay="1">
                     <i class="fas fa-balance-scale text-lg sm:text-xl"></i>
                     CADRE LÉGAL
                 </h3>
                 <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand reveal zoom-in" data-delay="1">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Titre VI : Lutte contre la pauvreté et les exclusions</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">Articles L261-1 à L266-2</p>
                         <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006142841/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1082,7 +1210,7 @@
                         </a>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand reveal zoom-in" data-delay="2">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Chapitre IV : Domiciliation</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">Articles L264-1 à L264-10</p>
                         <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006157615/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1091,7 +1219,7 @@
                         </a>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand reveal zoom-in" data-delay="3">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Chapitre VI : Lutte contre la précarité alimentaire</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">Articles L266-1 à L266-2 - « Favoriser l'accès à une alimentation sûre, diversifiée, de bonne qualité dans le respect du principe de dignité »</p>
                         <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000037550330/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1100,7 +1228,7 @@
                         </a>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand reveal zoom-in" data-delay="4">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Chapitre II : Revenu de solidarité active</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">Articles R262-1 à R262-121 - Accompagnement dans l'accès au RSA</p>
                         <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006074069/LEGISCTA000006160902/" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1113,12 +1241,12 @@
 
             <!-- ASSOCIATIONS & MOBILISATION -->
             <div class="mb-8 sm:mb-10 md:mb-12">
-                <h3 class="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-orange-light flex items-center gap-2 sm:gap-3">
+                <h3 class="text-xl sm:text-2xl font-black mb-4 sm:mb-6 text-orange-light flex items-center gap-2 sm:gap-3 reveal fade-left" data-delay="1">
                     <i class="fas fa-handshake text-lg sm:text-xl"></i>
                     ASSOCIATIONS & MOBILISATION
                 </h3>
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand reveal fade-up" data-delay="1">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Restos du Cœur</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">163 millions de repas distribués et 1,3 million de personnes accueillies</p>
                         <a href="https://www.restosducoeur.org" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1127,7 +1255,7 @@
                         </a>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand reveal fade-up" data-delay="2">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Défenseur des Droits</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">Accès aux droits des personnes en situation de précarité</p>
                         <a href="https://www.defenseurdesdroits.fr" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1136,7 +1264,7 @@
                         </a>
                     </div>
 
-                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand sm:col-span-2 md:col-span-1">
+                    <div class="bg-white/5 p-4 sm:p-5 brutal-border border-white/20 hover-expand sm:col-span-2 md:col-span-1 reveal fade-up" data-delay="3">
                         <h4 class="font-bold mb-2 text-orange-primary text-sm sm:text-base">Le Mouvement associatif</h4>
                         <p class="text-xs sm:text-sm opacity-80 mb-2">Mobilisation du 11 octobre contre la baisse de financement et la précarité croissante</p>
                         <a href="https://lemouvementassociatif.org" target="_blank" rel="noopener noreferrer" class="text-orange-primary hover:text-orange-warm text-xs font-bold inline-flex items-center gap-2">
@@ -1186,9 +1314,9 @@
                 <div>
                     <h4 class="font-black mb-3 sm:mb-4 text-base sm:text-lg">CONTACT</h4>
                     <ul class="space-y-1.5 sm:space-y-2 opacity-70 text-sm sm:text-base">
-                        <li class="flex items-start gap-2"><i class="fas fa-envelope text-orange-primary mt-0.5"></i><span>contact@rayondespoir.fr</span></li>
-                        <li class="flex items-start gap-2"><i class="fas fa-phone text-orange-primary mt-0.5"></i><span>01 45 89 32 76</span></li>
-                        <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-orange-primary mt-0.5"></i><span>Paris, France</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-envelope text-orange-primary mt-0.5 flex-shrink-0"></i><span class="break-all sm:break-normal">contact@rayondespoir.fr</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-phone text-orange-primary mt-0.5 flex-shrink-0"></i><span>01 45 89 32 76</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-orange-primary mt-0.5 flex-shrink-0"></i><span>Paris, France</span></li>
                     </ul>
                 </div>
 
