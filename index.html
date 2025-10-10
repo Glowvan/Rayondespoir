@@ -9,19 +9,19 @@
     <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 
-    <meta name="description" content="Association de lutte contre la pauvreté et l'exclusion sociale. Ensemble, transformons la précarité en opportunités : 9,7M de personnes sous le seuil de pauvreté en France ont besoin de votre soutien. Un petit geste, une grande lumière. 💡">
+    <meta name="description" content="Association de lutte contre la pauvreté et l'exclusion sociale. Ensemble, transformons la précarité en opportunités : 9,8M de personnes sous le seuil de pauvreté en France ont besoin de votre soutien. Un petit geste, une grande lumière.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Rayon d'Espoir - Un petit geste, une grande lumière">
-    <meta property="og:description" content="Association de lutte contre la pauvreté et l'exclusion sociale. Ensemble, transformons la précarité en opportunités. 9,7M de personnes sous le seuil de pauvreté en France ont besoin de votre soutien. 💡">
+    <meta property="og:description" content="Association de lutte contre la pauvreté et l'exclusion sociale. Ensemble, transformons la précarité en opportunités. 9,8M de personnes sous le seuil de pauvreté en France ont besoin de votre soutien.">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Rayon d'Espoir">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Rayon d'Espoir - Un petit geste, une grande lumière">
-    <meta name="twitter:description" content="Association de lutte contre la pauvreté et l'exclusion sociale. 9,7M de personnes sous le seuil de pauvreté en France ont besoin de votre soutien. 💡">
+    <meta name="twitter:description" content="Association de lutte contre la pauvreté et l'exclusion sociale. 9,8M de personnes sous le seuil de pauvreté en France ont besoin de votre soutien.">
 
     <!-- Instagram & Social Media -->
     <meta property="instagram:account" content="@Rayon_despoir2025">
@@ -1047,35 +1047,37 @@
             <!-- CTA DONS -->
             <div class="text-center">
                 <div class="bg-black text-white p-5 sm:p-6 md:p-8 lg:p-12 brutal-border-thick brutal-shadow-lg inline-block max-w-2xl w-full reveal slide-scale" data-delay="2">
-                    <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-5 sm:mb-6">CHOISISSEZ VOTRE IMPACT</h3>
+                    <form id="donationForm">
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-black mb-5 sm:mb-6">CHOISISSEZ VOTRE IMPACT</h3>
 
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
-                        <div class="donation-amount bg-orange-primary p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="20">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-black">20€</div>
-                            <div class="text-[10px] sm:text-xs mt-1">10 repas</div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                            <div class="donation-amount bg-orange-primary p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="20">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-black">20€</div>
+                                <div class="text-[10px] sm:text-xs mt-1">10 repas</div>
+                            </div>
+                            <div class="donation-amount bg-orange-warm p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="50">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-black">50€</div>
+                                <div class="text-[10px] sm:text-xs mt-1">25 repas</div>
+                            </div>
+                            <div class="donation-amount bg-orange-light p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="100">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-black">100€</div>
+                                <div class="text-[10px] sm:text-xs mt-1">50 repas</div>
+                            </div>
+                            <div class="donation-amount bg-orange-primary p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="custom">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-black">AUTRE</div>
+                                <div class="text-[10px] sm:text-xs mt-1">Montant libre</div>
+                            </div>
                         </div>
-                        <div class="donation-amount bg-orange-warm p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="50">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-black">50€</div>
-                            <div class="text-[10px] sm:text-xs mt-1">25 repas</div>
-                        </div>
-                        <div class="donation-amount bg-orange-light p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="100">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-black">100€</div>
-                            <div class="text-[10px] sm:text-xs mt-1">50 repas</div>
-                        </div>
-                        <div class="donation-amount bg-orange-primary p-3 sm:p-4 brutal-border text-center cursor-pointer" data-amount="custom">
-                            <div class="text-xl sm:text-2xl md:text-3xl font-black">AUTRE</div>
-                            <div class="text-[10px] sm:text-xs mt-1">Montant libre</div>
-                        </div>
-                    </div>
 
-                    <button type="button" onclick="document.getElementById('contactForm').submit();" class="bg-white text-black px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 brutal-border brutal-shadow-orange hover-expand font-black text-base sm:text-lg md:text-xl inline-flex items-center gap-2 sm:gap-3">
-                        <i class="fas fa-heart"></i>
-                        FAIRE UN DON
-                    </button>
+                        <button type="submit" class="bg-white text-black px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 brutal-border brutal-shadow-orange hover-expand font-black text-base sm:text-lg md:text-xl inline-flex items-center gap-2 sm:gap-3">
+                            <i class="fas fa-heart"></i>
+                            FAIRE UN DON
+                        </button>
 
-                    <div class="mt-4 sm:mt-6 text-xs sm:text-sm opacity-70">
-                        <i class="fas fa-lock mr-2"></i>Paiement 100% sécurisé • Reçu fiscal automatique
-                    </div>
+                        <div class="mt-4 sm:mt-6 text-xs sm:text-sm opacity-70">
+                            <i class="fas fa-lock mr-2"></i>Paiement 100% sécurisé • Reçu fiscal automatique
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
