@@ -1,6 +1,10 @@
 User-agent: *
 Disallow: /
 
+# Bitly
+User-agent: bitlybot
+Disallow:
+
 # Google
 User-agent: Googlebot
 Disallow: /
